@@ -119,7 +119,7 @@ class Extractor(object):
 
 
 if __name__ == '__main__':
-    print 'building network ...'
+    print('building network ...')
     extractor = Extractor()
 
     extractor.train(epochs=15)

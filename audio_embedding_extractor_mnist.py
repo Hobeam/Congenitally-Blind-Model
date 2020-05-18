@@ -106,12 +106,12 @@ class Extractor(object):
         audio_emb_extractor = Model(inputs=self.audio_class_model.input,
                                     outputs=self.audio_class_model.get_layer(name="embeddings").output)
         audio_embeddings = audio_emb_extractor.predict(x_train, batch_size=self.batch_size, verbose=True)
-        name = 'audio_embeddings/audio_embedding_mnist_train_%d.npy' % epochs
+        name = './audio_embeddings/audio_embedding_mnist_train_%d.npy' % epochs
         np.save(name, audio_embeddings)
      
 
         audio_embeddings = audio_emb_extractor.predict(x_test, batch_size=self.batch_size, verbose=True)
-        name = 'audio_embeddings/audio_embedding_mnist_test_%d.npy' % epochs
+        name = './audio_embeddings/audio_embedding_mnist_test_%d.npy' % epochs
         np.save(name, audio_embeddings)
 
         print('Finished')
@@ -119,7 +119,7 @@ class Extractor(object):
 
 
 if __name__ == '__main__':
-    print 'building network ...'
+    print('building network ...')
     extractor = Extractor()
 
     extractor.train(epochs=15)

@@ -264,7 +264,7 @@ class C_Blind(object):
 
 
 if __name__ == '__main__':
-    print 'building network ...'
+    print('building network ...')
     c_blind = C_Blind()
 
     c_blind.train(epochs=10000)

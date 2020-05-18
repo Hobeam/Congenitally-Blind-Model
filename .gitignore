@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# dataset & gen images
+audio_embeddings/
+model/
+gen_*/
 # C extensions
 *.so
 

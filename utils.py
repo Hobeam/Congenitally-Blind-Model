@@ -1,7 +1,8 @@
 import numpy as np
 from keras.datasets import mnist
 import os
-from scipy import misc
+# from scipy import misc
+from PIL import Image
 
 def load_mnist():
     # the data, shuffled and split between train and test sets
@@ -28,8 +29,10 @@ def load_coil_20(resize=(64,64)):
     label = 0
 
     for i in range(len(data_seq)):
-        current_img = misc.imread(data_dir+data_seq[i], mode='L')
-        current_img = misc.imresize(current_img, resize)
+        # current_img = misc.imread(data_dir+data_seq[i], mode='L')
+        current_img = Image.open(data_dir+data_seq[i]).convert('L')
+        # current_img = current_img.imresize(current_img, resize)
+        current_img = current_img.resize(resize)
         imgs.append(np.expand_dims(current_img, axis=3))
         labels.append(label)
         count = count + 1
@@ -58,9 +61,11 @@ def load_coil_10(resize=(64,64)):
     count = 0
     label = 0
     for i in range(len(data_seq)):
-        current_img = misc.imread(data_dir+'train/'+data_seq[i], mode='L')
-        current_img = misc.imresize(current_img, resize)
-        x_train.append(np.expand_dims(current_img, axis=3))
+        # current_img = misc.imread(data_dir+'train/'+data_seq[i], mode='L')
+        current_img = Image.open(data_dir+'train/'+data_seq[i]).convert('L')
+        # current_img = misc.imresize(current_img, resize)
+        current_img = current_img.resize(resize)
+        x_train.append(np.expand_dims(current_img, axis=2))
         y_train.append(label)
         count = count + 1
         if count == 70:
@@ -74,9 +79,11 @@ def load_coil_10(resize=(64,64)):
     count = 0
     label = 0
     for i in range(len(data_seq)):
-        current_img = misc.imread(data_dir+'test/'+data_seq[i], mode='L')
-        current_img = misc.imresize(current_img, resize)
-        x_test.append(np.expand_dims(current_img, axis=3))
+        # current_img = misc.imread(data_dir+'test/'+data_seq[i], mode='L')
+        current_img = Image.open(data_dir+'test/'+data_seq[i]).convert('L')
+        # current_img = misc.imresize(current_img, resize)
+        current_img = current_img.resize(resize)
+        x_test.append(np.expand_dims(current_img, axis=2))
         y_test.append(label)
         count = count + 1
         if count == 10:
